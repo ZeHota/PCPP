@@ -1,79 +1,26 @@
+var partSelec = require('../pcpp/assets/buildSelec')
 module.exports = {
     beforeEach: browser => {
         pcpp = browser.page.pcppObj()
         pcpp.navigate()
         browser.resizeWindow(1920, 1080)
-        },
+    },
     after: browser => {
         pcpp.end()
     },
     // 
-    'Build a PC': browser =>{
+    'Build an expensive PC': browser => {
         pcpp
         .click('@builder')
-        .click('@CPU')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(500)
-        .click('@cooler')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(500)
-        .click('@motherboard')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(500)
-        .click('@memory')
-        .pause(5000)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(500)
-        .click('@storage')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(500)
-        .click('@videoCard')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(500)
-        .click('@case')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(500)
-        .click('@PSU')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@priceSort')
-        .pause(500)
-        .click('@addTopItem')
-        .pause(10000)
+        partSelec.forEach(item=> {
+            pcpp.expBuild(pcpp, item)
+        })
+    },
+    'Build a Cheap PC': browser => {
+        pcpp
+        .click('@builder')
+        partSelec.forEach(item=> {
+            pcpp.cheBuild(pcpp, item)
+        })
     }
 }
